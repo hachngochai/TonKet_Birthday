@@ -1,4 +1,4 @@
-# 🎂 Birthday VR — Chúc mừng sinh nhật Tuấn Kiệt
+# 🎂 Birthday VR V3 — Chúc mừng sinh nhật em Tuấn Kiệt
 
 Một món quà sinh nhật dưới dạng thế giới **3D tương tác** được xây dựng bằng HTML, CSS, JavaScript, **Three.js** và WebXR. Có thể khám phá trên điện thoại hoặc máy tính.
 
@@ -14,7 +14,7 @@ Một món quà sinh nhật dưới dạng thế giới **3D tương tác** đư
 
 - Thế giới sinh nhật 3D, điều khiển bằng chuột hoặc cảm ứng và có trải nghiệm xoay nhìn 360°.
 - **Nhãn tương tác 3D nhỏ gọn** nổi phía trên hộp quà, nhân vật, bánh sinh nhật và lá thư; tối ưu cho mobile.
-- **Font Noto Serif** hỗ trợ tiếng Việt, nội dung chúc mừng gọi trực tiếp **Tuấn Kiệt**.
+- **Font Noto Serif** hỗ trợ tiếng Việt, lời chúc gần gũi xưng **em** dành cho Tuấn Kiệt.
 - Mở quà, chạm vào bánh sinh nhật, cắm từng cây nến, sử dụng micro để thổi nến; có thao tác thay thế nếu không thể cấp quyền micro.
 - Phát giai điệu *Happy Birthday to You* tổng hợp bằng Web Audio sau khi nến tắt.
 - Lá thư xuất hiện sau giai điệu, chạm vào để đọc lời chúc.
@@ -36,4 +36,4 @@ Mở `http://localhost:5500/`. Nếu triển khai qua GitHub Pages, trong **Sett
 - Three.js và font Google cần kết nối internet. VR qua kính đòi hỏi WebXR tương thích.
 - Nhân vật chibi hiện là mô hình cách điệu, chưa phải bản tái dựng khuôn mặt 3D từ ảnh thật.
 
-**🎉 Happy Birthday, Tuấn Kiệt!**
+**🎉 Chúc mừng sinh nhật em Tuấn Kiệt!**
