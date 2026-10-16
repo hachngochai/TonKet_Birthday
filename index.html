@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#08162c" />
-  <title>Chúc mừng sinh nhật Tuấn Kiệt 🎂 | Birthday VR V3</title>
+  <title>Chúc mừng sinh nhật em Tuấn Kiệt 🎂 | Birthday VR V3</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700;800;900&display=swap');
     * { box-sizing: border-box; }
@@ -173,24 +173,24 @@
 <body>
   <div class="hud">
     <div class="topbar">
-      <div class="brand">✦ HAPPY BIRTHDAY <span>TUẤN KIỆT</span></div>
+      <div class="brand">✦ HAPPY BIRTHDAY <span>EM TUẤN KIỆT</span></div>
       <div class="actions">
         <button class="pill" id="musicBtn" type="button">♫ ÂM THANH</button>
         <span id="vrSlot"></span>
       </div>
     </div>
-    <div class="tip" id="tip" role="status" aria-live="polite">Chạm vào màn hình để khám phá món quà sinh nhật dành cho Tuấn Kiệt ✨</div>
+    <div class="tip" id="tip" role="status" aria-live="polite">Chạm vào màn hình để khám phá món quà sinh nhật dành cho em Tuấn Kiệt ✨</div>
   </div>
 
   <div id="letterModal" aria-hidden="true">
     <div class="letter-card">
       <button class="close-btn" id="closeLetter" type="button">Đóng ✕</button>
       <div class="sr-only" aria-live="polite">Lá thư chúc mừng sinh nhật đã được mở</div>
-      <h2>💌 Gửi Tuấn Kiệt</h2>
-      <p>Chúc mừng sinh nhật Tuấn Kiệt! Một tuổi mới vừa bắt đầu, mang theo nhiều niềm vui, trải nghiệm và điều bất ngờ đáng nhớ. Chúc Tuấn Kiệt thật nhiều sức khỏe, may mắn và ngày càng vững vàng trên hành trình phía trước.</p>
-      <p>Mong mỗi ngày đều có thêm lý do để mỉm cười, gặp những người bạn tuyệt vời và lưu giữ thật nhiều kỷ niệm đẹp. Chúc mọi cố gắng trong học tập, công việc cùng những dự định riêng đều nhận được kết quả xứng đáng.</p>
-      <p>Tuổi mới thật rực rỡ nhé, Tuấn Kiệt! Mong mọi thử thách đều trở thành cơ hội trưởng thành, những ước mơ dần thành hiện thực và hạnh phúc luôn hiện diện trong những điều giản dị nhất.</p>
-      <p class="letter-sign">Happy Birthday, Tuấn Kiệt! 🎂✨</p>
+      <h2>💌 Gửi em Tuấn Kiệt</h2>
+      <p>Kiệt à, thêm một tuổi mới rồi! Chúc em luôn mạnh khỏe, vui vẻ và giữ được nụ cười thật tươi. Mong tuổi mới mang đến cho em nhiều điều bất ngờ, những trải nghiệm đáng nhớ và những ngày thật hạnh phúc.</p>
+      <p>Mong em luôn tự tin, mạnh mẽ và kiên trì với những điều mình yêu thích. Dù là học tập, công việc hay những dự định sắp tới, chúc mọi nỗ lực của em đều được đền đáp xứng đáng. Nếu có lúc mệt mỏi, hãy nhớ luôn có những người yêu thương và tin tưởng em.</p>
+      <p>Tuổi mới thật rực rỡ nhé, em Kiệt! Mong em có thật nhiều kỷ niệm đẹp, gặp được những người bạn tốt và luôn tìm thấy niềm vui trong những điều giản dị nhất. Hôm nay là ngày đặc biệt của em, cứ vui thật nhiều nhé!</p>
+      <p class="letter-sign">Chúc mừng sinh nhật em Tuấn Kiệt! Thương em nhiều! 🎂✨</p>
     </div>
   </div>
 
@@ -567,48 +567,48 @@
     function enterPhase(name){
       state.phase=name;
       if(name==='intro'){
-        setTip('Món quà sinh nhật dành cho Tuấn Kiệt.');
+        setTip('Món quà sinh nhật dành riêng cho em Tuấn Kiệt.');
         activeLabel(gift,'MỞ QUÀ');
-        setSpeech('Tuấn Kiệt ơi, có một bất ngờ!',gift);
+        setSpeech('Kiệt ơi, một bất ngờ dành cho em!',gift);
         updateCameraGoal(new THREE.Vector3(8.2,5.4,12.6),new THREE.Vector3(2.8,1.6,.7));
       }else if(name==='island'){
         setTip('Chạm vào nhân vật để tiếp tục.');
         activeLabel(avatar,'KHÁM PHÁ');
-        setSpeech('Chúc mừng sinh nhật Tuấn Kiệt!',avatar);
+        setSpeech('Chúc mừng sinh nhật em Kiệt!',avatar);
         updateCameraGoal(new THREE.Vector3(7.1,4.8,10.8),new THREE.Vector3(1.6,1.7,.6));
       }else if(name==='greeting'){
         setTip('Nhìn quanh rồi khám phá tiếp.');
         activeLabel(avatar,'TIẾP TỤC');
-        setSpeech('Một thế giới nhỏ đang chờ khám phá!',avatar);
+        setSpeech('Cả thế giới nhỏ này dành cho em!',avatar);
         updateCameraGoal(new THREE.Vector3(6.6,4.6,9.2),new THREE.Vector3(.4,1.8,.1));
       }else if(name==='explore'){
         setTip('Chạm vào bánh sinh nhật để bắt đầu điều ước.');
         activeLabel(cake,'BÁNH SINH NHẬT');
-        setSpeech('Có một điều bất ngờ trên chiếc bánh!',avatar);
+        setSpeech('Có điều bất ngờ chờ em trên bánh!',avatar);
         updateCameraGoal(new THREE.Vector3(8,5.2,11.6),new THREE.Vector3(1.9,1.8,.6));
         cakeHover.visible=true;
       }else if(name==='cakeZoom'){
         setTip('Chạm vào bánh để cắm từng cây nến.');
         activeLabel(cake,'CẮM NẾN 1/5');
-        setSpeech('Cùng cắm 5 cây nến nhé!',cake);
+        setSpeech('Cùng cắm 5 cây nến nhé, Kiệt!',cake);
         updateCameraGoal(new THREE.Vector3(8.2,3.5,5.7),new THREE.Vector3(5.9,1.35,1.48));
         cakeHover.visible=true;
       }else if(name==='micPrompt'){
         setTip('Cho phép dùng micro để thổi nến.');
         activeLabel(cake,'BẬT MICRO');
-        setSpeech('Chạm vào bánh để bật micro.',cake);
+        setSpeech('Em chạm vào bánh để bật micro nhé!',cake);
       }else if(name==='listening'){
         setTip('Thổi nhẹ vào micro để nến tắt.');
         activeLabel(cake,'ĐANG LẮNG NGHE');
-        setSpeech('Thổi nhẹ vào micro nhé!',cake);
+        setSpeech('Em thổi nhẹ vào micro nhé!',cake);
       }else if(name==='song'){
         setTip('Giai điệu Happy Birthday đang phát.');
         activeLabel(cake,'HAPPY BIRTHDAY');
-        setSpeech('Chúc mừng sinh nhật Tuấn Kiệt!',cake);
+        setSpeech('Chúc mừng sinh nhật em Kiệt!',cake);
       }else if(name==='letter'){
         setTip('Lá thư đã xuất hiện, chạm để mở lời chúc.');
         activeLabel(letter,'MỞ LÁ THƯ');
-        setSpeech('Lời chúc dành cho Tuấn Kiệt!',letter);
+        setSpeech('Lá thư yêu thương dành cho em!',letter);
         updateCameraGoal(new THREE.Vector3(5.8,4.8,8.8),new THREE.Vector3(1.45,2.1,.2));
         cakeHover.visible=false;
       }
@@ -700,8 +700,8 @@
     function openLetterModal() {
       $('#letterModal').style.display = 'flex';
       $('#letterModal').setAttribute('aria-hidden', 'false');
-      setTip('Lá thư đã mở. Chúc mừng sinh nhật Tuấn Kiệt!');
-      setSpeech('Chúc Tuấn Kiệt một tuổi mới rực rỡ!',letter);
+      setTip('Lá thư đã mở. Chúc mừng sinh nhật em Tuấn Kiệt!');
+      setSpeech('Chúc em tuổi mới thật rực rỡ!',letter);
     }
 
     $('#closeLetter').addEventListener('click', () => { $('#letterModal').style.display = 'none'; $('#letterModal').setAttribute('aria-hidden', 'true'); });
