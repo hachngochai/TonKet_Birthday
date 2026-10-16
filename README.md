@@ -1,32 +1,39 @@
-# 🎂 Birthday VR V2 — Chúc mừng sinh nhật em Chu Tuấn Kiệt
+# 🎂 Birthday VR — Chúc mừng sinh nhật Tuấn Kiệt
 
-## View Demo
+Một món quà sinh nhật dưới dạng thế giới **3D tương tác** được xây dựng bằng HTML, CSS, JavaScript, **Three.js** và WebXR. Có thể khám phá trên điện thoại hoặc máy tính.
 
-🌐 **[View Demo — Birthday VR V2](https://hachngochai.github.io/TonKet_Birthday/)**
+## 🌐 View Demo
 
-Trải nghiệm sinh nhật 3D bằng **HTML/CSS/JavaScript + Three.js + WebXR**. Sử dụng font **Be Vietnam Pro** hỗ trợ dấu tiếng Việt.
+### 🎮 [NHẤN VÀO ĐÂY ĐỂ XEM BẢN DEMO TRỰC TIẾP](https://hachngochai.github.io/TonKet_Birthday/)
 
-## Trải nghiệm
+**Địa chỉ GitHub Pages:** https://hachngochai.github.io/TonKet_Birthday/
 
-- Chạm vào không gian 3D để mở hộp quà; nhân vật giới thiệu bằng bong bóng lời thoại 3D.
-- Khám phá đảo nổi 360° bằng chuột hoặc cảm ứng.
-- Chạm vào bánh để zoom, sau đó **cắm 5 cây nến lần lượt**.
-- Đồng ý cấp quyền micro rồi thổi để tắt nến. Ngưỡng âm lượng đo dựa trên tiếng ồn nền; nếu không cấp quyền có thể chạm vào bánh thêm lần nữa để tiếp tục.
-- Sau khi nến tắt, website phát **giai điệu Happy Birthday to You tổng hợp bằng Web Audio** (không phải bản thu giọng hát).
-- Hết nhạc, lá thư 3D rơi xuống; chạm vào thư để xem lời chúc dành cho **em Kiệt**.
-- Nếu thiết bị hỗ trợ WebXR immersive VR, nút vào VR sẽ xuất hiện.
+> 💡 Link ở trên dành cho tất cả mọi người và không cần tài khoản GitHub. Nếu trình duyệt lưu bản cũ, có thể mở `https://hachngochai.github.io/TonKet_Birthday/?v=3.0` hoặc tải lại trang không dùng cache.
 
-## Chạy local
+## ✨ Tính năng
 
-Mở thư mục repo trong VS Code bằng Live Server hoặc chạy `python -m http.server 5500`, sau đó truy cập `http://localhost:5500/`. Cần internet để tải Three.js và Google Fonts.
+- Thế giới sinh nhật 3D, điều khiển bằng chuột hoặc cảm ứng và có trải nghiệm xoay nhìn 360°.
+- **Nhãn tương tác 3D nhỏ gọn** nổi phía trên hộp quà, nhân vật, bánh sinh nhật và lá thư; tối ưu cho mobile.
+- **Font Noto Serif** hỗ trợ tiếng Việt, nội dung chúc mừng gọi trực tiếp **Tuấn Kiệt**.
+- Mở quà, chạm vào bánh sinh nhật, cắm từng cây nến, sử dụng micro để thổi nến; có thao tác thay thế nếu không thể cấp quyền micro.
+- Phát giai điệu *Happy Birthday to You* tổng hợp bằng Web Audio sau khi nến tắt.
+- Lá thư xuất hiện sau giai điệu, chạm vào để đọc lời chúc.
+- WebXR VR dành cho thiết bị và trình duyệt hỗ trợ; các thiết bị khác vẫn có thể xem 3D bình thường.
 
-## GitHub Pages
+## 🚀 Chạy project và triển khai
 
-Repository: [hachngochai/TonKet_Birthday](https://github.com/hachngochai/TonKet_Birthday). Trong Settings → Pages chọn nguồn **Deploy from a branch**, branch **main**, folder **/ (root)**. Truy cập URL View Demo ở đầu README.
+Dùng **Live Server** trong VS Code hoặc chạy:
 
-## Lưu ý
+```bash
+python -m http.server 5500
+```
 
-- Hãy cấp quyền micro sau khi chạm vào bánh; HTTPS GitHub Pages cho phép trình duyệt hỏi quyền. Âm thanh micro được xử lý cục bộ để phát hiện tín hiệu, không tải lên máy chủ.
-- Trên thiết bị không hỗ trợ kính VR, có thể khám phá bằng xoay nhìn 360°.
-- Hiện nhân vật chibi là mô hình cách điệu tạo bằng hình học; **chưa ghép ảnh chân dung thật**.
-- Nếu thấy phiên bản cũ, hãy làm mới trang không dùng cache.
+Mở `http://localhost:5500/`. Nếu triển khai qua GitHub Pages, trong **Settings → Pages** chọn **Deploy from a branch**, nhánh **main**, thư mục **/ (root)**.
+
+## 📌 Lưu ý
+
+- Truy cập demo qua **HTTPS** để trình duyệt có thể xin quyền micro. Phần phát hiện tín hiệu thổi được xử lý trong trình duyệt, không gửi ghi âm lên máy chủ.
+- Three.js và font Google cần kết nối internet. VR qua kính đòi hỏi WebXR tương thích.
+- Nhân vật chibi hiện là mô hình cách điệu, chưa phải bản tái dựng khuôn mặt 3D từ ảnh thật.
+
+**🎉 Happy Birthday, Tuấn Kiệt!**
