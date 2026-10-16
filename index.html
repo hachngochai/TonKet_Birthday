@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#08162c" />
-  <title>Chúc mừng sinh nhật em Kiệt 🎂 | Birthday VR V2</title>
+  <title>Chúc mừng sinh nhật Tuấn Kiệt 🎂 | Birthday VR V3</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700;800;900&display=swap');
     * { box-sizing: border-box; }
     html, body {
       margin: 0;
@@ -14,9 +14,9 @@
       overflow: hidden;
       background: #07152d;
       color: #fff;
-      font-family: 'Be Vietnam Pro', 'Nunito', system-ui, sans-serif;
+      font-family: 'Noto Serif', Georgia, 'Times New Roman', serif;
     }
-    button { font-family: inherit; }
+    button { font-family: inherit; font-weight: 700; line-height: 1.4; letter-spacing: 0; }
     canvas {
       display: block;
       position: fixed;
@@ -46,7 +46,7 @@
     }
     .brand {
       font-size: 13px;
-      letter-spacing: .14em;
+      letter-spacing: .06em;
       font-weight: 900;
       color: #eff7ff;
       text-shadow: 0 2px 10px rgba(0,0,0,.35);
@@ -66,7 +66,7 @@
       padding: 10px 14px;
       font-size: 12px;
       font-weight: 800;
-      letter-spacing: .04em;
+      letter-spacing: .01em;
       cursor: pointer;
       backdrop-filter: blur(12px);
     }
@@ -173,24 +173,24 @@
 <body>
   <div class="hud">
     <div class="topbar">
-      <div class="brand">✦ HAPPY BIRTHDAY <span>EM KIỆT</span></div>
+      <div class="brand">✦ HAPPY BIRTHDAY <span>TUẤN KIỆT</span></div>
       <div class="actions">
         <button class="pill" id="musicBtn" type="button">♫ ÂM THANH</button>
         <span id="vrSlot"></span>
       </div>
     </div>
-    <div class="tip" id="tip" role="status" aria-live="polite">Chạm vào màn hình để bắt đầu hành trình sinh nhật dành cho em Kiệt ✨</div>
+    <div class="tip" id="tip" role="status" aria-live="polite">Chạm vào màn hình để khám phá món quà sinh nhật dành cho Tuấn Kiệt ✨</div>
   </div>
 
   <div id="letterModal" aria-hidden="true">
     <div class="letter-card">
       <button class="close-btn" id="closeLetter" type="button">Đóng ✕</button>
       <div class="sr-only" aria-live="polite">Lá thư chúc mừng sinh nhật đã được mở</div>
-      <h2>💌 Gửi em trai Chu Tuấn Kiệt</h2>
-      <p>Kiệt à, vậy là em lại đón thêm một tuổi mới rồi. Chúc em thật nhiều sức khỏe, vui vẻ và ngày càng bản lĩnh hơn trên hành trình của mình.</p>
-      <p>Mong em luôn giữ được sự chân thành, nhiệt huyết và nụ cười thật tươi của mình. Dù phía trước là học tập, công việc hay những dự định riêng, tin rằng em sẽ làm thật tốt và có thêm nhiều kỷ niệm đẹp.</p>
-      <p>Chúc em tuổi mới gặp nhiều may mắn, có những người đồng hành thật tuyệt vời và luôn thấy hạnh phúc với những điều giản dị quanh mình. Hôm nay là ngày của em, cứ vui hết mình nhé!</p>
-      <p class="letter-sign">Chúc mừng sinh nhật em Kiệt 🎂✨</p>
+      <h2>💌 Gửi Tuấn Kiệt</h2>
+      <p>Chúc mừng sinh nhật Tuấn Kiệt! Một tuổi mới vừa bắt đầu, mang theo nhiều niềm vui, trải nghiệm và điều bất ngờ đáng nhớ. Chúc Tuấn Kiệt thật nhiều sức khỏe, may mắn và ngày càng vững vàng trên hành trình phía trước.</p>
+      <p>Mong mỗi ngày đều có thêm lý do để mỉm cười, gặp những người bạn tuyệt vời và lưu giữ thật nhiều kỷ niệm đẹp. Chúc mọi cố gắng trong học tập, công việc cùng những dự định riêng đều nhận được kết quả xứng đáng.</p>
+      <p>Tuổi mới thật rực rỡ nhé, Tuấn Kiệt! Mong mọi thử thách đều trở thành cơ hội trưởng thành, những ước mơ dần thành hiện thực và hạnh phúc luôn hiện diện trong những điều giản dị nhất.</p>
+      <p class="letter-sign">Happy Birthday, Tuấn Kiệt! 🎂✨</p>
     </div>
   </div>
 
@@ -333,80 +333,93 @@
       }
     }
 
-    function drawSpeechTexture(text) {
-      const canvas = document.createElement('canvas');
-      canvas.width = 1024;
-      canvas.height = 512;
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      roundedRect(ctx, 30, 30, 900, 350, 36, 'rgba(14, 32, 64, 0.92)', 'rgba(128, 245, 223, 0.88)');
-      ctx.beginPath();
-      ctx.moveTo(160, 380);
-      ctx.lineTo(122, 458);
-      ctx.lineTo(248, 380);
-      ctx.closePath();
-      ctx.fillStyle = 'rgba(14, 32, 64, 0.92)';
-      ctx.fill();
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = 'rgba(128, 245, 223, 0.88)';
-      ctx.stroke();
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '800 42px "Be Vietnam Pro", "Nunito", sans-serif';
-      ctx.textBaseline = 'top';
-      const maxWidth = 820;
-      const lines = [];
-      const words = text.split(' ');
-      let current = '';
-      for (const word of words) {
-        const next = current ? current + ' ' + word : word;
-        if (ctx.measureText(next).width > maxWidth && current) {
-          lines.push(current);
-          current = word;
-        } else {
-          current = next;
-        }
+    // Small legible text textures, rendered as world-space interactive sprite labels.
+    function floatingTexture(text,tag=false){
+      const canvas=document.createElement('canvas');
+      canvas.width=tag?640:960;canvas.height=tag?184:350;
+      const ctx=canvas.getContext('2d');
+      const fontSize=tag?53:49;
+      ctx.font='700 '+fontSize+'px "Noto Serif", Georgia, serif';
+      const max=canvas.width-(tag?65:110),lines=[];let current='';
+      for(const word of text.split(' ')){
+        const next=current?current+' '+word:word;
+        if(current&&ctx.measureText(next).width>max){lines.push(current);current=word;}else current=next;
       }
-      if (current) lines.push(current);
-      const size = lines.length > 4 ? 35 : 42;
-      ctx.font = `800 ${size}px "Be Vietnam Pro", "Nunito", sans-serif`;
-      const lineHeight = size + 13;
-      const startY = 75 + Math.max(0, (4 - lines.length) * 14);
-      lines.forEach((line, i) => ctx.fillText(line, 78, startY + i * lineHeight));
-      const texture = new THREE.CanvasTexture(canvas);
-      texture.colorSpace = THREE.SRGBColorSpace;
-      return texture;
+      if(current)lines.push(current);
+      const size=lines.length>3?38:fontSize;
+      ctx.font='700 '+size+'px "Noto Serif", Georgia, serif';
+      roundedRect(ctx,17,14,canvas.width-34,canvas.height-(tag?28:76),
+        tag?70:48,tag?'rgba(105,239,211,.94)':'rgba(12,35,65,.88)',
+        tag?'rgba(255,255,255,.75)':'rgba(131,241,219,.85)');
+      if(!tag){ctx.beginPath();ctx.moveTo(110,274);ctx.lineTo(158,326);ctx.lineTo(188,274);ctx.closePath();ctx.fillStyle='rgba(12,35,65,.88)';ctx.fill();}
+      ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=tag?'#092b32':'#fffaf1';
+      const centerY=tag?92:145;
+      lines.forEach((line,i)=>ctx.fillText(line,canvas.width/2,centerY+(i-(lines.length-1)/2)*(tag?61:69)));
+      const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;return texture;
     }
-
-    const speech = new THREE.Sprite(new THREE.SpriteMaterial({ transparent: true }));
-    speech.scale.set(4.8, 2.45, 1);
-    scene.add(speech);
-
-    function setSpeech(text, target, offset = new THREE.Vector3(0, 2.7, 0)) {
-      if (speech.material.map) speech.material.map.dispose();
-      speech.material.map = drawSpeechTexture(text);
-      state.speechText = text;
-      speech.material.needsUpdate = true;
-      state.speechTarget = target;
-      state.speechOffset.copy(offset);
-      speech.visible = true;
-      updateSpeechPosition();
+    function spriteLabel(text,isTag=false){
+      const sprite=new THREE.Sprite(new THREE.SpriteMaterial({
+        map:floatingTexture(text,isTag),transparent:true,depthTest:false,depthWrite:false
+      }));
+      sprite.renderOrder=isTag?18:17;
+      sprite.userData.aspect=isTag?640/184:960/350;
+      scene.add(sprite);return sprite;
     }
-
-    function updateSpeechPosition() {
-      if (!state.speechTarget) return;
+    const speech=spriteLabel('',false);
+    const objectTag=spriteLabel('MỞ QUÀ',true);
+    let activeTagTarget=null;
+    const tagOffsets={
+      gift:new THREE.Vector3(0,1.65,0),
+      avatar:new THREE.Vector3(0,3.3,0),
+      cake:new THREE.Vector3(0,2.15,0),
+      letter:new THREE.Vector3(0,.97,0)
+    };
+    function activeLabel(target,text){
+      if(objectTag.material.map)objectTag.material.map.dispose();
+      objectTag.material.map=floatingTexture(text,true);
+      objectTag.material.needsUpdate=true;
+      activeTagTarget=target;objectTag.userData.targetName=target.name;
+      objectTag.visible=true;state.activeLabelText=text;
+    }
+    function setSpeech(text,target){
+      if(speech.material.map)speech.material.map.dispose();
+      speech.material.map=floatingTexture(text,false);speech.material.needsUpdate=true;
+      state.speechText=text;state.speechTarget=target;
+      speech.visible=true;updateSpeechPosition();
+    }
+    function sizeSprite(sprite,pixels){
+      const dist=Math.max(1,sprite.position.distanceTo(camera.position));
+      const planeHeight=2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*dist;
+      const width=planeHeight*Math.min(pixels,innerWidth*.56)/innerHeight;
+      sprite.scale.set(width,width/sprite.userData.aspect,1);
+    }
+    function updateSpeechPosition(){
+      const mobile=innerWidth<=760;
+      const offsets={
+        gift:new THREE.Vector3(.15,2.32,.1),
+        avatar:new THREE.Vector3(1.1,3.6,0),
+        cake:new THREE.Vector3(.3,2.72,0),
+        letter:new THREE.Vector3(.4,1.65,0)
+      };
+      if(activeTagTarget){
+        activeTagTarget.getWorldPosition(tempVec);
+        objectTag.position.copy(tempVec).add(tagOffsets[activeTagTarget.name]||tagOffsets.gift);
+        objectTag.position.y+=Math.sin(clocks.t*2.8)*.055;
+        objectTag.visible=!['song','listening'].includes(state.phase);
+        sizeSprite(objectTag,mobile?113:126);
+      }
+      if(!state.speechTarget)return;
+      speech.visible=!mobile||['intro','island','greeting','song'].includes(state.phase);
+      if(!speech.visible)return;
       state.speechTarget.getWorldPosition(tempVec);
-      speech.position.copy(tempVec).add(state.speechOffset);
+      speech.position.copy(tempVec).add(offsets[state.speechTarget.name]||offsets.avatar);
+      sizeSprite(speech,mobile?192:202);
     }
-
-    // Font web phải tải xong trước khi vẽ vào CanvasTexture để tránh mất dấu tiếng Việt.
-    document.fonts.load('800 42px "Be Vietnam Pro"', 'Tiếng Việt: ă â đ ê ô ơ ư ấ ễ ộ').then(() => document.fonts.ready).then(() => {
-      if (state.speechText) {
-        if (speech.material.map) speech.material.map.dispose();
-        speech.material.map = drawSpeechTexture(state.speechText);
-        speech.material.needsUpdate = true;
-      }
-    });
-
+    // The canvas texture is refreshed only after the Vietnamese serif font loads.
+    document.fonts?.load('700 49px "Noto Serif"','Tiếng Việt ă â đ ê ô ơ ư ấ ễ ộ').then(()=>{
+      if(state.speechText&&state.speechTarget)setSpeech(state.speechText,state.speechTarget);
+      if(activeTagTarget)activeLabel(activeTagTarget,state.activeLabelText||'KHÁM PHÁ');
+    }).catch(()=>{});
     function setTip(text, hide = false) {
       const tip = $('#tip');
       tip.textContent = text;
@@ -544,57 +557,60 @@
     seal.rotation.x = Math.PI / 2;
 
     function updateCameraGoal(position, lookAt) {
-      state.camGoal.copy(position);
       state.lookGoal.copy(lookAt);
+      // Pull mobile cameras back so the whole island and labels remain visible.
+      const factor = innerWidth <= 760 ? (state.phase === 'cakeZoom' ? 1.35 : 1.5) : 1;
+      state.camGoal.copy(lookAt).add(position.clone().sub(lookAt).multiplyScalar(factor));
       state.cameraTransition = true;
     }
 
-    function enterPhase(name) {
-      state.phase = name;
-      if (name === 'intro') {
-        setTip('Chạm vào màn hình để mở món quà và bắt đầu khám phá ✨');
-        setSpeech('Kiệt ơi, chạm vào màn hình nhé! Có một bất ngờ sinh nhật dành riêng cho em đó.', avatar, new THREE.Vector3(0.4, 5.1, 0));
-        updateCameraGoal(new THREE.Vector3(8.2, 5.4, 12.6), new THREE.Vector3(2.8, 1.6, 0.7));
-      }
-      if (name === 'island') {
-        setTip('Cứ chạm tiếp để thế giới sinh nhật tự mở ra nhé ✨');
-        setSpeech('Chúc mừng sinh nhật em Kiệt! Chạm tiếp để khám phá thêm nhé.', avatar, new THREE.Vector3(0.4, 5.05, 0));
-        updateCameraGoal(new THREE.Vector3(7.1, 4.8, 10.8), new THREE.Vector3(1.6, 1.7, 0.6));
-      }
-      if (name === 'greeting') {
-        setTip('Không cần nút bấm nữa, cứ để em tự khám phá bằng cách chạm vào màn hình ✨');
-        setSpeech('Hôm nay là ngày đặc biệt của em đó. Cùng nhìn quanh một chút rồi đến chiếc bánh sinh nhật nha!', avatar, new THREE.Vector3(0.35, 5.05, 0));
-        updateCameraGoal(new THREE.Vector3(6.6, 4.6, 9.2), new THREE.Vector3(0.4, 1.8, 0.1));
-      }
-      if (name === 'explore') {
-        setTip('Tự do xoay nhìn xung quanh. Khi sẵn sàng, chạm vào chiếc bánh sinh nhật 🎂');
-        setSpeech('Em có thể tự xoay xem cả không gian này. Khi thích rồi thì chạm vào chiếc bánh sinh nhật nhé!', avatar, new THREE.Vector3(0.35, 5.05, 0));
-        updateCameraGoal(new THREE.Vector3(8.0, 5.2, 11.6), new THREE.Vector3(1.9, 1.8, 0.6));
-        cakeHover.visible = true;
-      }
-      if (name === 'cakeZoom') {
-        setTip('Giờ thì mọi thứ sẽ diễn ra ngay trên chiếc bánh sinh nhật này 🎂');
-        setSpeech('Giờ đến lượt em tự cắm 5 cây nến. Chạm vào bánh để đặt từng cây nhé!', cake, new THREE.Vector3(0.2, 3.0, 0));
-        updateCameraGoal(new THREE.Vector3(8.2, 3.5, 5.7), new THREE.Vector3(5.9, 1.35, 1.48));
-        cakeHover.visible = true;
-      }
-      if (name === 'micPrompt') {
-        setTip('Trình duyệt có thể hỏi quyền micro — hãy cho phép để thổi nến 🎤');
-        setSpeech('Đẹp rồi đó! Chạm thêm lần nữa để cho phép micro và thổi nến nhé.', cake, new THREE.Vector3(0.2, 3.0, 0));
-      }
-      if (name === 'listening') {
-        setTip('Hãy thổi nhẹ vào micro. Chỉ cần tín hiệu đủ mạnh là nến sẽ tắt 🎤');
-        setSpeech('Bây giờ em thổi nhẹ vào micro nhé. Chỉ cần âm thanh vừa đủ thôi là nến sẽ tắt!', cake, new THREE.Vector3(0.2, 3.0, 0));
-      }
-      if (name === 'song') {
-        setTip('Cùng nghe hết bài hát rồi sẽ có một lá thư bay xuống dành cho em ✨');
-        setSpeech('Tuyệt vời! Nến tắt rồi. Cùng nghe bài Happy Birthday to You nào! 🎵', cake, new THREE.Vector3(0.2, 3.0, 0));
-      }
-      if (name === 'letter') {
-        setTip('Lá thư đã bay xuống rồi — chạm vào thư để mở lời chúc 💌');
-        setSpeech('Một lá thư chúc mừng vừa bay xuống cho em đó, chạm vào để mở nhé!', letter, new THREE.Vector3(0.05, 1.8, 0));
-        updateCameraGoal(new THREE.Vector3(5.8, 4.8, 8.8), new THREE.Vector3(1.45, 2.1, 0.2));
-        cakeHover.visible = false;
+    function enterPhase(name){
+      state.phase=name;
+      if(name==='intro'){
+        setTip('Món quà sinh nhật dành cho Tuấn Kiệt.');
+        activeLabel(gift,'MỞ QUÀ');
+        setSpeech('Tuấn Kiệt ơi, có một bất ngờ!',gift);
+        updateCameraGoal(new THREE.Vector3(8.2,5.4,12.6),new THREE.Vector3(2.8,1.6,.7));
+      }else if(name==='island'){
+        setTip('Chạm vào nhân vật để tiếp tục.');
+        activeLabel(avatar,'KHÁM PHÁ');
+        setSpeech('Chúc mừng sinh nhật Tuấn Kiệt!',avatar);
+        updateCameraGoal(new THREE.Vector3(7.1,4.8,10.8),new THREE.Vector3(1.6,1.7,.6));
+      }else if(name==='greeting'){
+        setTip('Nhìn quanh rồi khám phá tiếp.');
+        activeLabel(avatar,'TIẾP TỤC');
+        setSpeech('Một thế giới nhỏ đang chờ khám phá!',avatar);
+        updateCameraGoal(new THREE.Vector3(6.6,4.6,9.2),new THREE.Vector3(.4,1.8,.1));
+      }else if(name==='explore'){
+        setTip('Chạm vào bánh sinh nhật để bắt đầu điều ước.');
+        activeLabel(cake,'BÁNH SINH NHẬT');
+        setSpeech('Có một điều bất ngờ trên chiếc bánh!',avatar);
+        updateCameraGoal(new THREE.Vector3(8,5.2,11.6),new THREE.Vector3(1.9,1.8,.6));
+        cakeHover.visible=true;
+      }else if(name==='cakeZoom'){
+        setTip('Chạm vào bánh để cắm từng cây nến.');
+        activeLabel(cake,'CẮM NẾN 1/5');
+        setSpeech('Cùng cắm 5 cây nến nhé!',cake);
+        updateCameraGoal(new THREE.Vector3(8.2,3.5,5.7),new THREE.Vector3(5.9,1.35,1.48));
+        cakeHover.visible=true;
+      }else if(name==='micPrompt'){
+        setTip('Cho phép dùng micro để thổi nến.');
+        activeLabel(cake,'BẬT MICRO');
+        setSpeech('Chạm vào bánh để bật micro.',cake);
+      }else if(name==='listening'){
+        setTip('Thổi nhẹ vào micro để nến tắt.');
+        activeLabel(cake,'ĐANG LẮNG NGHE');
+        setSpeech('Thổi nhẹ vào micro nhé!',cake);
+      }else if(name==='song'){
+        setTip('Giai điệu Happy Birthday đang phát.');
+        activeLabel(cake,'HAPPY BIRTHDAY');
+        setSpeech('Chúc mừng sinh nhật Tuấn Kiệt!',cake);
+      }else if(name==='letter'){
+        setTip('Lá thư đã xuất hiện, chạm để mở lời chúc.');
+        activeLabel(letter,'MỞ LÁ THƯ');
+        setSpeech('Lời chúc dành cho Tuấn Kiệt!',letter);
+        updateCameraGoal(new THREE.Vector3(5.8,4.8,8.8),new THREE.Vector3(1.45,2.1,.2));
+        cakeHover.visible=false;
       }
     }
 
@@ -618,7 +634,8 @@
         state.candlesPlaced = true;
         enterPhase('micPrompt');
       } else {
-        setSpeech(`Hay lắm! Đã cắm ${state.candleCount}/5 cây nến rồi. Chạm vào bánh để cắm tiếp nào!`, cake, new THREE.Vector3(0.2, 3.0, 0));
+        activeLabel(cake, `CẮM NẾN ${state.candleCount+1}/5`);
+        setSpeech(`Đã cắm ${state.candleCount}/5 cây nến!`,cake);
       }
     }
 
@@ -645,7 +662,8 @@
       } catch (err) {
         state.micRequesting = false;
         state.micDenied = true;
-        setSpeech('Nếu micro không được phép, em có thể chạm thêm lần nữa vào bánh để tắt nến nhé!', cake, new THREE.Vector3(0.2, 3.0, 0));
+        activeLabel(cake, 'CHẠM ĐỂ THỔI');
+        setSpeech('Không có micro? Chạm bánh để thổi nến.',cake);
         setTip('Micro bị từ chối, chạm vào bánh một lần nữa để thổi nến thay thế.');
       }
     }
@@ -682,8 +700,8 @@
     function openLetterModal() {
       $('#letterModal').style.display = 'flex';
       $('#letterModal').setAttribute('aria-hidden', 'false');
-      setTip('Lá thư đã mở ra rồi. Chúc em Kiệt có một sinh nhật thật vui nhé 💌');
-      setSpeech('Hy vọng em sẽ thích lời chúc này. Chúc em sinh nhật thật vui và hạnh phúc nhé!', letter, new THREE.Vector3(0.05, 1.85, 0));
+      setTip('Lá thư đã mở. Chúc mừng sinh nhật Tuấn Kiệt!');
+      setSpeech('Chúc Tuấn Kiệt một tuổi mới rực rỡ!',letter);
     }
 
     $('#closeLetter').addEventListener('click', () => { $('#letterModal').style.display = 'none'; $('#letterModal').setAttribute('aria-hidden', 'true'); });
@@ -707,7 +725,7 @@
           vrBtn.style.background = 'rgba(255,255,255,.12)';
           vrBtn.style.fontSize = '12px';
           vrBtn.style.fontWeight = '800';
-          vrBtn.style.fontFamily = 'Nunito, sans-serif';
+          vrBtn.style.fontFamily = 'Noto Serif, Georgia, serif';
           $('#vrSlot').append(vrBtn);
         }
       }).catch(() => {});
@@ -721,8 +739,9 @@
       pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
-      const hits = raycaster.intersectObjects([gift, cake, avatar, letter], true);
+      const hits = raycaster.intersectObjects([objectTag, gift, cake, avatar, letter], true);
       if (!hits.length) return null;
+      if(hits[0].object===objectTag&&objectTag.visible)return objectTag.userData.targetName;
       let obj = hits[0].object;
       while (obj.parent && !['gift', 'cake', 'avatar', 'letter'].includes(obj.name)) obj = obj.parent;
       return obj.name || null;
@@ -735,7 +754,7 @@
       if (state.phase === 'greeting') { enterPhase('explore'); return; }
       if (state.phase === 'explore') {
         if (targetName === 'cake') enterPhase('cakeZoom');
-        else if (targetName === 'avatar') { avatar.rotation.y += 0.45; setSpeech('Hihi, em cứ tự do khám phá nhé. Khi sẵn sàng thì chạm vào bánh sinh nhật!', avatar, new THREE.Vector3(0.35, 5.05, 0)); }
+        else if (targetName === 'avatar') { avatar.rotation.y += 0.45; setSpeech('Khám phá xung quanh rồi chạm vào bánh nhé!',avatar); }
         return;
       }
       if (state.phase === 'cakeZoom') { if (targetName === 'cake') placeCandle(); return; }
@@ -836,10 +855,13 @@
     renderer.setAnimationLoop(animateScene);
     addEventListener('resize', () => {
       camera.aspect = innerWidth / innerHeight;
+      camera.fov = innerWidth <= 760 ? 65 : 52;
       camera.updateProjectionMatrix();
       renderer.setSize(innerWidth, innerHeight);
     });
 
+    camera.fov = innerWidth <= 760 ? 65 : 52;
+    camera.updateProjectionMatrix();
     enterPhase('intro');
   </script>
 </body>
