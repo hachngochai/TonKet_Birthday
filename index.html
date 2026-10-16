@@ -160,6 +160,25 @@
       .tip { bottom: 16px; max-width: calc(100vw - 32px); text-align: center; }
       .letter-card p { font-size: 15px; line-height: 1.75; }
     }
+
+    /* Compact day/night control; sunlight makes labels and navigation readable. */
+    .day-mode { background: #c4e9f9; }
+    .day-mode::before {
+      background: radial-gradient(circle at 64% 34%, rgba(255,241,165,.42), transparent 58%);
+    }
+    .day-mode .brand { color: #173e52; text-shadow: 0 1px 12px rgba(255,255,255,.65); }
+    .day-mode .brand span { color: #235c59; }
+    .day-mode .pill {
+      color: #163e54; border-color: rgba(18,84,98,.22);
+      background: rgba(255,255,255,.72);
+    }
+    .day-mode .pill:hover { background: rgba(255,255,255,.95); }
+    @media (max-width: 760px) {
+      .topbar { padding: 12px; gap: 7px; }
+      .brand { max-width: 43vw; line-height: 1.35; font-size: 10px; }
+      .actions { gap: 5px; }
+      .actions .pill { padding: 9px 10px; font-size: 10px; }
+    }
   </style>
   <script type="importmap">
     {
@@ -175,6 +194,7 @@
     <div class="topbar">
       <div class="brand">✦ HAPPY BIRTHDAY <span>EM TUẤN KIỆT</span></div>
       <div class="actions">
+        <button class="pill" id="dayNightBtn" type="button" aria-label="Chuyển giữa ngày và đêm" aria-pressed="false">☾ ĐÊM</button>
         <button class="pill" id="musicBtn" type="button">♫ ÂM THANH</button>
         <span id="vrSlot"></span>
       </div>
@@ -224,7 +244,8 @@
     controls.maxPolarAngle = Math.PI * 0.82;
     controls.target.set(2.8, 1.6, 0);
 
-    scene.add(new THREE.HemisphereLight(0x9dfcf4, 0x1b2648, 2.6));
+    const hemisphere = new THREE.HemisphereLight(0x9dfcf4, 0x1b2648, 2.6);
+    scene.add(hemisphere);
     const sun = new THREE.DirectionalLight(0xffe6b7, 3.6);
     sun.position.set(-6, 14, 8);
     sun.castShadow = true;
@@ -535,8 +556,36 @@
       flames.push(flame);
     }
 
-    mesh(new THREE.PlaneGeometry(260, 260), mat(0x07152b, 1, 0.02), 0, -3.05, 0).rotation.x = -Math.PI / 2;
+    const floor = mesh(new THREE.PlaneGeometry(260, 260), mat(0x07152b, 1, 0.02), 0, -3.05, 0);
+    floor.rotation.x = -Math.PI / 2;
 
+
+    // Birthday V3 theme switch: preserve the original nighttime composition by default.
+    // Both modes update actual Three.js lighting/sky, not just CSS.
+    let dayMode = false;
+    function setDayMode(isDay) {
+      dayMode = Boolean(isDay);
+      scene.background.setHex(dayMode ? 0xbee6f7 : 0x07152c);
+      scene.fog.color.setHex(dayMode ? 0xbee6f7 : 0x07152c);
+      scene.fog.density = dayMode ? 0.011 : 0.016;
+      hemisphere.intensity = dayMode ? 3.0 : 2.6;
+      hemisphere.color.setHex(dayMode ? 0xf9f7e4 : 0x9dfcf4);
+      hemisphere.groundColor.setHex(dayMode ? 0x8cae82 : 0x1b2648);
+      sun.intensity = dayMode ? 4.25 : 3.6;
+      sun.color.setHex(dayMode ? 0xfff1c9 : 0xffe6b7);
+      sun.position.set(dayMode ? -8 : -6, dayMode ? 16 : 14, 8);
+      glow.intensity = dayMode ? 24 : 65;
+      glow.color.setHex(dayMode ? 0xffd997 : 0x5adfec);
+      floor.material.color.setHex(dayMode ? 0x8abdb5 : 0x07152b);
+      stars.visible = !dayMode;
+      document.body.classList.toggle('day-mode',dayMode);
+      const toggle = $('#dayNightBtn');
+      toggle.textContent = dayMode ? '☀ NGÀY' : '☾ ĐÊM';
+      toggle.setAttribute('aria-pressed',String(dayMode));
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+      if(themeColor) themeColor.setAttribute('content',dayMode ? '#bee6f7' : '#08162c');
+    }
+    $('#dayNightBtn').addEventListener('click',() => setDayMode(!dayMode));
     const confetti = [];
     function burstConfetti(amount = 130, center = new THREE.Vector3(2.8, 3, 1.4)) {
       for (let i = 0; i < amount; i++) {
@@ -862,6 +911,7 @@
 
     camera.fov = innerWidth <= 760 ? 65 : 52;
     camera.updateProjectionMatrix();
+    setDayMode(false);
     enterPhase('intro');
   </script>
 </body>
