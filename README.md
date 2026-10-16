@@ -2,6 +2,10 @@
 
 Website sinh nhật dành cho **Chu Tuấn Kiệt**, xây dựng bằng **HTML/CSS/JavaScript ES Modules + Three.js + WebXR**. Không cần backend hoặc framework build.
 
+## View Demo
+
+🌐 **[View Demo — Birthday VR](https://hachngochai.github.io/TonKet_Birthday/)**
+
 ## Tính năng
 
 - 6 chương: mở quà, đảo nổi, avatar có mặt thật, không gian 360°, thổi nến, sân khấu pháo hoa.
