@@ -522,12 +522,21 @@
 
     // Money rain, bursting upward and floating back to the island.
     const moneyNotes=[];
-    for(let i=0;i<48;i++){
+    // Precisely 18 banknotes and 18 gold coins per click.
+    for(let i=0;i<36;i++){
       const note=new THREE.Group();scene.add(note);
-      mesh(new THREE.PlaneGeometry(.7,.39),
-        new THREE.MeshBasicMaterial({color:i%3===0?0xb6ec98:0x55c57b,side:THREE.DoubleSide,transparent:true,opacity:.94}),0,0,0,note);
-      mesh(new THREE.CircleGeometry(.068,16),
-        new THREE.MeshBasicMaterial({color:0xf2f6bd,side:THREE.DoubleSide}),0,0,.015,note);
+      if(i<18){
+        mesh(new THREE.PlaneGeometry(.7,.39),
+          new THREE.MeshBasicMaterial({color:i%3===0?0xb6ec98:0x55c57b,side:THREE.DoubleSide,transparent:true,opacity:.94}),0,0,0,note);
+        mesh(new THREE.CircleGeometry(.068,16),
+          new THREE.MeshBasicMaterial({color:0xf2f6bd,side:THREE.DoubleSide}),0,0,.015,note);
+      }else{
+        const gold=new THREE.MeshStandardMaterial({color:0xffcf38,metalness:.72,roughness:.22,emissive:0x7a4300,emissiveIntensity:.22});
+        const coin=mesh(new THREE.CylinderGeometry(.19,.19,.045,24),gold,0,0,0,note);
+        coin.rotation.x=Math.PI/2;
+        mesh(new THREE.TorusGeometry(.125,.014,6,24),
+          new THREE.MeshStandardMaterial({color:0xfff1a1,metalness:.45,roughness:.28}),0,0,.03,note);
+      }
       note.visible=false;
       moneyNotes.push({note,angle:Math.random()*Math.PI*2,spread:.5+Math.random()*2.3,delay:Math.random()*.6,
         speed:.8+Math.random()*.7,spin:1+Math.random()*2.5});
