@@ -519,6 +519,43 @@
       ball(0.18, 0xffffff, side * 0.24, 0.05, 0.1, avatar);
     }
 
+
+    // Money rain, bursting upward and floating back to the island.
+    const moneyNotes=[];
+    for(let i=0;i<36;i++){
+      const note=new THREE.Group();scene.add(note);
+      mesh(new THREE.PlaneGeometry(.52,.29),
+        new THREE.MeshBasicMaterial({color:i%3===0?0xb6ec98:0x55c57b,side:THREE.DoubleSide,transparent:true,opacity:.94}),0,0,0,note);
+      mesh(new THREE.CircleGeometry(.068,16),
+        new THREE.MeshBasicMaterial({color:0xf2f6bd,side:THREE.DoubleSide}),0,0,.015,note);
+      note.visible=false;
+      moneyNotes.push({note,angle:Math.random()*Math.PI*2,spread:.5+Math.random()*2.3,delay:Math.random()*.6,
+        speed:.8+Math.random()*.7,spin:1+Math.random()*2.5});
+    }
+    const moneyOrigin=new THREE.Vector3();
+    let moneyStart=-100;
+    function triggerMoneyRain(){
+      avatar.getWorldPosition(moneyOrigin);
+      moneyOrigin.y+=1.5;
+      moneyStart=clocks.t;
+      setSpeech('Mưa tiền tới rồi, Kiệt ơi!',avatar);
+    }
+    function animateMoneyRain(){
+      const age=clocks.t-moneyStart;
+      for(const m of moneyNotes){
+        const t=age-m.delay;
+        m.note.visible=t>=0&&t<4.3;
+        if(!m.note.visible)continue;
+        const rise=Math.min(t/.65,1)*2.5;
+        const fall=Math.max(0,t-.65);
+        const radius=m.spread*(.2+Math.min(1,t/1.8));
+        m.note.position.set(moneyOrigin.x+Math.cos(m.angle+t*.65)*radius,
+          moneyOrigin.y+rise-fall*m.speed,
+          moneyOrigin.z+Math.sin(m.angle+t*.65)*radius);
+        m.note.rotation.set(t*m.spin,t*m.spin*.7,Math.sin(t*3+m.angle)*.5);
+        m.note.scale.setScalar(Math.max(.12,1-Math.max(0,t-3)*.5));
+      }
+    }
     const balloons = [];
     for (let i = 0; i < 18; i++) {
       const b = new THREE.Group();
@@ -799,12 +836,13 @@
 
     function handleInteraction(targetName = null) {
       ensureAudioContext();
+      if(targetName==='avatar' && !['intro','island','greeting'].includes(state.phase)){triggerMoneyRain();return;}
       if (state.phase === 'intro') { openGift(); return; }
       if (state.phase === 'island') { enterPhase('greeting'); return; }
       if (state.phase === 'greeting') { enterPhase('explore'); return; }
       if (state.phase === 'explore') {
         if (targetName === 'cake') enterPhase('cakeZoom');
-        else if (targetName === 'avatar') { avatar.rotation.y += 0.45; setSpeech('Khám phá xung quanh rồi chạm vào bánh nhé!',avatar); }
+        else if (targetName === 'avatar') { triggerMoneyRain(); }
         return;
       }
       if (state.phase === 'cakeZoom') { if (targetName === 'cake') placeCandle(); return; }
@@ -891,6 +929,7 @@
       controls.update();
       island.rotation.y = state.phase === 'explore' ? Math.sin(clocks.t * 0.4) * 0.06 : island.rotation.y * 0.92;
       avatar.position.y = Math.sin(clocks.t * 2.1) * 0.06;
+      animateMoneyRain();
       balloons.forEach(({ group, baseY, seed }) => { group.position.y = baseY + Math.sin(clocks.t + seed) * 0.15; });
       cakeHover.rotation.z += 0.02;
       cakeHover.material.opacity = 0.4 + Math.sin(clocks.t * 3) * 0.15;
