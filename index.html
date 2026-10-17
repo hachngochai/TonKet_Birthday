@@ -522,9 +522,9 @@
 
     // Money rain, bursting upward and floating back to the island.
     const moneyNotes=[];
-    for(let i=0;i<36;i++){
+    for(let i=0;i<48;i++){
       const note=new THREE.Group();scene.add(note);
-      mesh(new THREE.PlaneGeometry(.52,.29),
+      mesh(new THREE.PlaneGeometry(.7,.39),
         new THREE.MeshBasicMaterial({color:i%3===0?0xb6ec98:0x55c57b,side:THREE.DoubleSide,transparent:true,opacity:.94}),0,0,0,note);
       mesh(new THREE.CircleGeometry(.068,16),
         new THREE.MeshBasicMaterial({color:0xf2f6bd,side:THREE.DoubleSide}),0,0,.015,note);
@@ -535,6 +535,7 @@
     const moneyOrigin=new THREE.Vector3();
     let moneyStart=-100;
     function triggerMoneyRain(){
+      island.updateWorldMatrix(true,true);
       avatar.getWorldPosition(moneyOrigin);
       moneyOrigin.y+=1.5;
       moneyStart=clocks.t;
@@ -836,13 +837,16 @@
 
     function handleInteraction(targetName = null) {
       ensureAudioContext();
-      if(targetName==='avatar' && !['intro','island','greeting'].includes(state.phase)){triggerMoneyRain();return;}
+      // Always trigger the money shower when clicking Kiệt, including the early island scenes.
+      if(targetName==='avatar' || (targetName===objectTag.userData.targetName && activeTagTarget===avatar && targetName!=='cake')){
+        triggerMoneyRain();return;
+      }
       if (state.phase === 'intro') { openGift(); return; }
       if (state.phase === 'island') { enterPhase('greeting'); return; }
       if (state.phase === 'greeting') { enterPhase('explore'); return; }
       if (state.phase === 'explore') {
         if (targetName === 'cake') enterPhase('cakeZoom');
-        else if (targetName === 'avatar') { triggerMoneyRain(); }
+
         return;
       }
       if (state.phase === 'cakeZoom') { if (targetName === 'cake') placeCandle(); return; }
@@ -927,7 +931,8 @@
         }
       }
       controls.update();
-      island.rotation.y = state.phase === 'explore' ? Math.sin(clocks.t * 0.4) * 0.06 : island.rotation.y * 0.92;
+      // No idle spinning: keep the avatar and island facing the same direction.
+      island.rotation.y = 0;
       avatar.position.y = Math.sin(clocks.t * 2.1) * 0.06;
       animateMoneyRain();
       balloons.forEach(({ group, baseY, seed }) => { group.position.y = baseY + Math.sin(clocks.t + seed) * 0.15; });
